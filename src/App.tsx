@@ -1,9 +1,15 @@
 import React from 'react';
 
 import { Table } from './components/Table';
+import { ColumnDef } from './components/Table/types';
+
+type FlowTableVM = {
+    col1: string,
+    col2: string,
+};
 
 export const App: React.FC = () => {
-    const data = React.useMemo(
+    const data = React.useMemo<FlowTableVM[]>(
         () => [
             {
                 col1: 'Hello',
@@ -21,11 +27,11 @@ export const App: React.FC = () => {
         [],
     );
 
-    const columns = React.useMemo(
+    const columns = React.useMemo<ColumnDef<FlowTableVM>[]>(
         () => [
             {
                 Header: 'Column 1',
-                accessor: 'col1', // accessor is the "key" in the data
+                accessor: 'col1',
             },
             {
                 Header: 'Column 2',
