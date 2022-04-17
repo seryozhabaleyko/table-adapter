@@ -4,10 +4,10 @@ module.exports = {
         es2021: true,
     },
     extends: [
-        'plugin:react/recommended',
         'airbnb',
         'airbnb-typescript',
         'airbnb/hooks',
+        'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
     ],
     parser: '@typescript-eslint/parser',
@@ -25,8 +25,10 @@ module.exports = {
         '@typescript-eslint',
     ],
     rules: {
+        // this option sets a specific tab width for your code
         // https://eslint.org/docs/rules/indent
         indent: ['error', 4, { SwitchCase: 1 }],
+        '@typescript-eslint/indent': 'off',
 
         // https://eslint.org/docs/rules/default-case
         'default-case': 'off',
