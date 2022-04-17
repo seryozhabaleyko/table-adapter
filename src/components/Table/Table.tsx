@@ -3,6 +3,9 @@ import {
     useTable, useResizeColumns, useFlexLayout, TableOptions,
 } from 'react-table';
 
+import {
+    TableSC, TheadSC, TbodySC, TrSC, ThSC, TdSC,
+} from './styles';
 import { TableProps, Obj } from './types';
 
 export const Table = <Data extends Obj>({
@@ -19,35 +22,35 @@ export const Table = <Data extends Obj>({
     } = useTable(options, useResizeColumns, useFlexLayout);
 
     return (
-        <table {...getTableProps()}>
-            <thead>
+        <TableSC {...getTableProps()}>
+            <TheadSC>
                 {headerGroups.map(({ getHeaderGroupProps, headers }) => (
-                    <tr {...getHeaderGroupProps()}>
+                    <TrSC {...getHeaderGroupProps()}>
                         {headers.map((column) => (
-                            <th {...column.getHeaderProps()}>
+                            <ThSC {...column.getHeaderProps()}>
                                 {column.render('Header')}
-                            </th>
+                            </ThSC>
                         ))}
-                    </tr>
+                    </TrSC>
                 ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
+            </TheadSC>
+            <TbodySC {...getTableBodyProps()}>
                 {rows.map((row) => {
                     prepareRow(row);
 
                     return (
-                        <tr {...row.getRowProps()}>
+                        <TrSC {...row.getRowProps()}>
                             {row.cells.map((cell) => (
-                                <td
+                                <TdSC
                                     {...cell.getCellProps()}
                                 >
                                     {cell.render('Cell')}
-                                </td>
+                                </TdSC>
                             ))}
-                        </tr>
+                        </TrSC>
                     );
                 })}
-            </tbody>
-        </table>
+            </TbodySC>
+        </TableSC>
     );
 };
