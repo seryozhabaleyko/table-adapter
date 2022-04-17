@@ -53,5 +53,24 @@ module.exports = {
             namedComponents: 'arrow-function',
             unnamedComponents: 'arrow-function',
         }],
+
+        // Enforce a convention in module import order
+        // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+        'import/order': [
+            'error', {
+                groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+                'newlines-between': 'always'
+            }
+        ],
+
+        // Prevent usage of Array index in keys
+        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
+        'react/no-array-index-key': 'off',
+
+        // Detect missing key prop
+        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md
+        'react/jsx-key': 'off',
+
+        'react/jsx-props-no-spreading': 'off',
     },
 };
