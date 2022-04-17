@@ -1,13 +1,15 @@
 import React from 'react';
-import { useTable, useResizeColumns, useFlexLayout } from 'react-table';
+import {
+    useTable, useResizeColumns, useFlexLayout, TableOptions,
+} from 'react-table';
 
-import { TableProps } from './types';
+import { TableProps, Obj } from './types';
 
-export const Table = <Data extends Record<string, unknown>>({
+export const Table = <Data extends Obj>({
     data,
     columns,
 }: TableProps<Data>): JSX.Element => {
-    const options = React.useMemo(() => ({
+    const options = React.useMemo<TableOptions<Data>>(() => ({
         data,
         columns,
     }), [data, columns]);
