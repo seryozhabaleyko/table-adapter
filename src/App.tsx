@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Table } from './components/Table';
-import { ColumnDef } from './components/Table/types';
+import { Table, ColumnDef } from './components/Table';
 
 type FlowTableVM = {
     col1: string,
