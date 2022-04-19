@@ -90,7 +90,7 @@ export const Table = <Data extends Obj>({
                     )}
                 </AutoSizer>
 
-                {isLoading && !isIncrementalLoad && (
+                {isIncrementalLoad && (
                     <div>loading...</div>
                 )}
             </TableBodySC>

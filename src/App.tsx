@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Table, ColumnDef } from './components/Table';
+import { timeout } from './utils';
 
 const Component = styled.div`
   display: grid;
@@ -114,6 +115,9 @@ export const App: React.FC = () => {
                 columns={columns}
                 loadMore={async () => {
                     console.log('loadMore');
+
+                    await timeout(1500);
+
                     setData((prev) => [...prev, ...init]);
                 }}
             />
