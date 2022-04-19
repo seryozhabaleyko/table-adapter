@@ -15,7 +15,7 @@ export const Table = <Data extends Obj>({
     data,
     columns,
     loadMore,
-    rowHeight = 15,
+    rowHeight = 10,
     isLoading,
 }: TableProps<Data>): JSX.Element => {
     const options = React.useMemo(() => ({
