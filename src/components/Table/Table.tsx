@@ -1,56 +1,99 @@
 import React from 'react';
 import {
-    useTable, useResizeColumns, useFlexLayout, TableOptions,
+    useTable, useResizeColumns, useFlexLayout,
 } from 'react-table';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { ListChildComponentProps } from 'react-window';
 
 import {
-    TableSC, TheadSC, TbodySC, TrSC, ThSC, TdSC,
+    TableSC, TableHeadSC, TableBodySC, TableRowSC, TableCellSC,
 } from './styles';
 import { TableProps, Obj } from './types';
+import { InfiniteList } from './InfiniteList';
 
 export const Table = <Data extends Obj>({
     data,
     columns,
+    loadMore,
+    rowHeight = 15,
+    isLoading,
 }: TableProps<Data>): JSX.Element => {
-    const options = React.useMemo<TableOptions<Data>>(() => ({
+    const options = React.useMemo(() => ({
         data,
         columns,
     }), [data, columns]);
 
     const {
-        getTableProps, getTableBodyProps, headerGroups, rows, prepareRow,
-    } = useTable(options, useResizeColumns, useFlexLayout);
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+        totalColumnsWidth,
+    } = useTable<Data>(options, useResizeColumns, useFlexLayout);
+
+    const renderRow = React.useCallback(({ index, style }: ListChildComponentProps) => {
+        const row = rows[index];
+
+        prepareRow(row);
+
+        return (
+            <TableRowSC {...row.getRowProps({ style })}>
+                {row.cells.map((cell) => (
+                    <TableCellSC {...cell.getCellProps()}>
+                        {cell.render('Cell')}
+                    </TableCellSC>
+                ))}
+            </TableRowSC>
+        );
+    }, [rows, prepareRow]);
+
+    const [isIncrementalLoad, setIsIncrementalLoad] = React.useState(false);
+
+    const handleLoadMore = async (): Promise<void> => {
+        setIsIncrementalLoad(true);
+
+        try {
+            await loadMore();
+        } catch {
+            // ignoring
+        }
+
+        setIsIncrementalLoad(false);
+    };
 
     return (
         <TableSC {...getTableProps()}>
-            <TheadSC>
+            <TableHeadSC>
                 {headerGroups.map(({ getHeaderGroupProps, headers }) => (
-                    <TrSC {...getHeaderGroupProps()}>
+                    <TableRowSC {...getHeaderGroupProps()}>
                         {headers.map((column) => (
-                            <ThSC {...column.getHeaderProps()}>
+                            <TableCellSC {...column.getHeaderProps()}>
                                 {column.render('Header')}
-                            </ThSC>
+                            </TableCellSC>
                         ))}
-                    </TrSC>
+                    </TableRowSC>
                 ))}
-            </TheadSC>
-            <TbodySC {...getTableBodyProps()}>
-                {rows.map((row) => {
-                    prepareRow(row);
+            </TableHeadSC>
+            <TableBodySC {...getTableBodyProps()}>
+                <AutoSizer>
+                    {({ width, height }) => (
+                        <InfiniteList
+                            itemsCount={rows.length}
+                            loadMoreItems={handleLoadMore}
+                            width={Math.max(totalColumnsWidth, width)}
+                            height={height}
+                            rowHeight={rowHeight}
+                            renderRow={renderRow}
+                            isLoading={isLoading}
+                        />
+                    )}
+                </AutoSizer>
 
-                    return (
-                        <TrSC {...row.getRowProps()}>
-                            {row.cells.map((cell) => (
-                                <TdSC
-                                    {...cell.getCellProps()}
-                                >
-                                    {cell.render('Cell')}
-                                </TdSC>
-                            ))}
-                        </TrSC>
-                    );
-                })}
-            </TbodySC>
+                {isLoading && !isIncrementalLoad && (
+                    <div>loading...</div>
+                )}
+            </TableBodySC>
         </TableSC>
     );
 };
