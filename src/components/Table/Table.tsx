@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    useTable, useFlexLayout, useResizeColumns,
+    useTable, useFlexLayout,
 } from 'react-table';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { ListChildComponentProps } from 'react-window';
@@ -30,7 +30,7 @@ export const Table = <Data extends Obj>({
         rows,
         prepareRow,
         totalColumnsWidth,
-    } = useTable<Data>(options, useFlexLayout, useResizeColumns);
+    } = useTable<Data>(options, useFlexLayout);
 
     const renderRow = React.useCallback(({ index, style }: ListChildComponentProps) => {
         const row = rows[index];
