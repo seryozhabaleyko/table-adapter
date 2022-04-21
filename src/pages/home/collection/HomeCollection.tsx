@@ -74,7 +74,7 @@ const init = [
     },
 ];
 
-export const TableAdapterCollection: React.FC<TableAdapterProps> = () => {
+export const HomeCollection: React.FC<TableAdapterProps> = () => {
     const [data, setData] = React.useState(init);
 
     const columns = React.useMemo<ColumnDef<FlowTableVM>[]>(

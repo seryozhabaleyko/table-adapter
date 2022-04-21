@@ -1,1 +1,0 @@
-export { TableAdapterCollection } from './TableAdapterCollection';
