@@ -72,5 +72,6 @@ module.exports = {
         'react/jsx-key': 'off',
 
         'react/jsx-props-no-spreading': 'off',
+        'react/require-default-props': 'off'
     },
 };
