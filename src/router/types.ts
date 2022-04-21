@@ -2,11 +2,10 @@ import React from 'react';
 
 export type RouteConfig = {
     caseSensitive?: boolean;
-    children?: React.ReactNode;
-    element?: React.ReactNode | null;
+    children?: RouteConfig[];
+    element?: React.ReactNode;
     index?: boolean;
     path?: string;
-    routes?: RouteConfig[];
 };
 
 export type RouterProps = {
