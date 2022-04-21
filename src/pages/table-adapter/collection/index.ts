@@ -1,0 +1,1 @@
+export { TableAdapterCollection } from './TableAdapterCollection';
