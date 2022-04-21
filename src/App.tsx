@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 import { Table, ColumnDef } from './components/Table';
 import { timeout } from './utils';
+import { Router, routes } from './router';
 
 const Component = styled.div`
   display: grid;
@@ -108,14 +110,15 @@ export const App: React.FC = () => {
 
     return (
         <Component>
+            <BrowserRouter>
+                <Router routes={routes} />
+            </BrowserRouter>
             <h1>Table</h1>
 
             <Table
                 data={data}
                 columns={columns}
                 loadMore={async () => {
-                    console.log('loadMore');
-
                     await timeout(1500);
 
                     setData((prev) => [...prev, ...init]);
