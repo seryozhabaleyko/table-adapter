@@ -1,3 +1,9 @@
 import { DefaultTheme } from 'styled-components';
 
-export const theme: DefaultTheme = {};
+import { createTransitions } from './transitions';
+
+const transitions = createTransitions({});
+
+export const theme: DefaultTheme = {
+    transitions,
+};
