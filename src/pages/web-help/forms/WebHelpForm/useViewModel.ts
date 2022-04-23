@@ -9,7 +9,7 @@ import { validationSchema } from './schema';
 type UseViewModelHook = (initialValues?: Partial<Article>) => {
     initialValues: ArticleVm;
     validationSchema: Yup.BaseSchema<ArticleVm>;
-    prepare: (vm: ArticleVm) => Article;
+    prepare: (articleVm: ArticleVm) => Article;
 };
 
 const makeViewModel: UseViewModelHook = (initialValues) => (
