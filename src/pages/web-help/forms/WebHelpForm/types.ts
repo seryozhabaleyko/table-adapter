@@ -7,5 +7,5 @@ export type ArticleVm = {
 
 export type WebHelpFormProps = {
     initialValues?: Partial<Article>;
-    saveAsync: (highlight: Article) => Promise<void>;
+    saveAsync: (article: Article) => Promise<void>;
 };

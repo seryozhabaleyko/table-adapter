@@ -1,21 +1,26 @@
 import React from 'react';
-import { Formik, FormikHelpers } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 
-import { FormikTextField, FormikTextAreaField, FormikWysiwygField } from '../../../../form';
+import {
+    FormikTextField, FormikWysiwygField, FormikControls,
+} from '../../../../form';
+import { FormGroup } from '../../../../components';
 
 import { WebHelpFormProps, ArticleVm } from './types';
-import { validationSchema } from './schema';
+import { useViewModel } from './useViewModel';
 
 export const WebHelpForm: React.FC<WebHelpFormProps> = ({ initialValues, saveAsync }) => {
-    const castedInitialValues = React.useMemo(() => (
-        validationSchema.cast(initialValues)
-    ), [initialValues]);
+    const {
+        initialValues: castedInitialValues,
+        validationSchema,
+        prepare,
+    } = useViewModel(initialValues);
 
     const onSubmit = async (articleVm: ArticleVm, { setSubmitting }: FormikHelpers<ArticleVm>) => {
         setSubmitting(true);
 
         try {
-            await saveAsync({});
+            await saveAsync(prepare(articleVm));
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error(error);
@@ -30,25 +35,28 @@ export const WebHelpForm: React.FC<WebHelpFormProps> = ({ initialValues, saveAsy
             onSubmit={onSubmit}
             validationSchema={validationSchema}
         >
-            <form
+            <Form
                 autoComplete="off"
                 noValidate
             >
-                <FormikTextField
-                    name="title"
-                    label="Title"
-                />
+                <FormGroup>
+                    <FormikTextField
+                        name="title"
+                        label="Title"
+                    />
+                </FormGroup>
 
-                <FormikTextAreaField
-                    name="content"
-                    label="Content"
-                />
+                <FormGroup>
+                    <FormikWysiwygField
+                        name="content"
+                        label="Content"
+                    />
+                </FormGroup>
 
-                <FormikWysiwygField
-                    name="body"
-                    label="Body"
-                />
-            </form>
+                <FormGroup>
+                    <FormikControls />
+                </FormGroup>
+            </Form>
         </Formik>
     );
 };

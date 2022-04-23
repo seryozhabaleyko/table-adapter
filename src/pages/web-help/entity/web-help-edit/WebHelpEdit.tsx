@@ -16,7 +16,7 @@ export const WebHelpEdit: React.FC = () => {
             <WebHelpForm
                 initialValues={{
                     title: 'title 1',
-                    content: 'content 1',
+                    content: '<p>content 1</p>',
                 }}
                 saveAsync={saveAsync}
             />
