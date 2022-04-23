@@ -72,6 +72,10 @@ module.exports = {
         'react/jsx-key': 'off',
 
         'react/jsx-props-no-spreading': 'off',
-        'react/require-default-props': 'off'
+        'react/require-default-props': 'off',
+
+        // This rule can enforce or disallow the use of braces around arrow function body.
+        // https://eslint.org/docs/rules/arrow-body-style
+        'arrow-body-style': 'off',
     },
 };
