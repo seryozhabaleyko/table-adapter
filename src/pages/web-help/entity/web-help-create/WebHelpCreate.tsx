@@ -11,7 +11,7 @@ export const WebHelpCreate: React.FC = () => {
 
     return (
         <div>
-            <h1>WebHelpEdit</h1>
+            <h1>WebHelpCreate</h1>
 
             <WebHelpForm saveAsync={saveAsync} />
         </div>
