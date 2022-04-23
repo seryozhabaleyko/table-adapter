@@ -5,6 +5,8 @@ import { useField } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import { FormHelperText, FormLabel } from '../../../components';
+
 import { FormikWysiwygFieldProps } from './types';
 
 export const FormikWysiwygField: React.FC<FormikWysiwygFieldProps> = ({ name, label }) => {
@@ -17,7 +19,7 @@ export const FormikWysiwygField: React.FC<FormikWysiwygFieldProps> = ({ name, la
     return (
         <div>
             {label && (
-                <label htmlFor={field.name}>{label}</label>
+                <FormLabel htmlFor={field.name}>{label}</FormLabel>
             )}
 
             <CKEditor
@@ -27,7 +29,7 @@ export const FormikWysiwygField: React.FC<FormikWysiwygFieldProps> = ({ name, la
             />
 
             {meta.touched && meta.error && (
-                <div>{meta.touched && meta.error}</div>
+                <FormHelperText>{meta.touched && meta.error}</FormHelperText>
             )}
         </div>
     );

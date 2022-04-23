@@ -1,6 +1,8 @@
 import React from 'react';
 import { useField } from 'formik';
 
+import { FormHelperText, FormLabel } from '../../components';
+
 type FormikTextAreaFieldProps = {
     name: string;
     label?: string;
@@ -12,7 +14,7 @@ export const FormikTextAreaField: React.FC<FormikTextAreaFieldProps> = ({ name, 
     return (
         <div>
             {label && (
-                <label htmlFor={field.name}>{label}</label>
+                <FormLabel htmlFor={field.name}>{label}</FormLabel>
             )}
 
             <textarea
@@ -23,7 +25,7 @@ export const FormikTextAreaField: React.FC<FormikTextAreaFieldProps> = ({ name, 
             />
 
             {meta.touched && meta.error && (
-                <div>{meta.touched && meta.error}</div>
+                <FormHelperText>{meta.touched && meta.error}</FormHelperText>
             )}
         </div>
     );
