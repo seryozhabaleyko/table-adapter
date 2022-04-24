@@ -1,7 +1,13 @@
 import React from 'react';
 
+import { Content, Sider } from './components';
+import { WebHelpDetailsSC } from './styles';
+
 export const WebHelpDetails: React.FC = () => {
     return (
-        <div>WebHelpDetails</div>
+        <WebHelpDetailsSC>
+            <Sider />
+            <Content />
+        </WebHelpDetailsSC>
     );
 };
