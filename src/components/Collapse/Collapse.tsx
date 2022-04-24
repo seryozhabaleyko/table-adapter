@@ -5,7 +5,7 @@ import { Transition } from 'react-transition-group';
 import { duration } from '@theming';
 import { getTransitionProps } from '@utils';
 
-import { ICollapseProps } from './types';
+import { ICollapseProps, State } from './types';
 import {
     CollapseSC,
     CollapseWrapperInnerSC,
@@ -61,9 +61,10 @@ export const Collapse: React.FC<ICollapseProps> = ({
         node.style.height = 'auto';
     };
 
-    const onExit = (node: HTMLElement) => {
+    const onExit = async (node: HTMLElement) => {
         const wrapperSize = getWrapperSize();
 
+        node.style.height = 'auto';
         node.style.height = `${wrapperSize}px`;
     };
 
@@ -101,8 +102,8 @@ export const Collapse: React.FC<ICollapseProps> = ({
         >
             {(state) => (
                 <CollapseSC
-                    in={inProp}
-                    state={state}
+                    inProp={inProp}
+                    state={state as State}
                     collapsedSize={collapsedSize}
                     style={{
                         minHeight: collapsedSize,

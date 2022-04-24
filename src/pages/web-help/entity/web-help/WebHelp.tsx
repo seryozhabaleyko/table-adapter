@@ -16,6 +16,34 @@ const items: TreeItem[] = [
             {
                 id: '2',
                 name: 'Child - 2',
+                children: [
+                    {
+                        id: '1',
+                        name: 'Child - 1',
+                    },
+                    {
+                        id: '2',
+                        name: 'Child - 2',
+                        children: [
+                            {
+                                id: '1',
+                                name: 'Child - 1',
+                            },
+                            {
+                                id: '2',
+                                name: 'Child - 2',
+                            },
+                            {
+                                id: '3',
+                                name: 'Child - 3',
+                            },
+                        ],
+                    },
+                    {
+                        id: '3',
+                        name: 'Child - 3',
+                    },
+                ],
             },
             {
                 id: '3',
@@ -34,12 +62,44 @@ const items: TreeItem[] = [
             {
                 id: '2',
                 name: 'Child - 2',
+                children: [
+                    {
+                        id: '1',
+                        name: 'Child - 1',
+                    },
+                    {
+                        id: '2',
+                        name: 'Child - 2',
+                        children: [
+                            {
+                                id: '1',
+                                name: 'Child - 1',
+                            },
+                            {
+                                id: '2',
+                                name: 'Child - 2',
+                            },
+                            {
+                                id: '3',
+                                name: 'Child - 3',
+                            },
+                        ],
+                    },
+                    {
+                        id: '3',
+                        name: 'Child - 3',
+                    },
+                ],
             },
             {
                 id: '3',
                 name: 'Child - 3',
             },
         ],
+    },
+    {
+        id: '1100',
+        name: 'Child - 1100',
     },
 ];
 

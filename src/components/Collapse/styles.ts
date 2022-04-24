@@ -1,6 +1,6 @@
-import { styled, css } from "../../theming";
+import styled, { css } from 'styled-components';
 
-import { State } from "./types";
+import { State } from './types';
 
 const stateMap = {
     [State.Entering]: css``,
@@ -10,10 +10,9 @@ const stateMap = {
     `,
     [State.Exiting]: css``,
     [State.Exited]: css`
-        ${(props: { in: boolean; collapsedSize: string | number }) =>
-            !props.in &&
-            props.collapsedSize &&
-            css`
+        ${(props: { inProp: boolean; collapsedSize: string | number }) => !props.inProp
+            && props.collapsedSize
+            && css`
                 visibility: hidden;
             `};
     `,
@@ -21,7 +20,7 @@ const stateMap = {
 };
 
 export const CollapseSC = styled.div<{
-    in: boolean;
+    inProp: boolean;
     state: State;
     collapsedSize: string | number;
 }>`
@@ -30,7 +29,7 @@ export const CollapseSC = styled.div<{
 
     ${(props) => stateMap[props.state]};
 
-    transition: ${(props) => props.theme.transitions.create("height")};
+    transition: ${(props) => props.theme.transitions.create('height')};
 `;
 
 export const CollapseWrapperSC = styled.div`
