@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
     HomeCollection,
-    WebHelpDetails,
+    WebHelp,
     WebHelpEdit,
     WebHelpCreate,
     NotFound,
@@ -17,7 +17,7 @@ export const routes: RouteConfig[] = [
         children: [
             {
                 path: 'webhelp',
-                element: <WebHelpDetails />,
+                element: <WebHelp />,
             },
             {
                 path: 'webhelp/create',

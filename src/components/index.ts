@@ -5,3 +5,4 @@ export { FormLabel } from './FormLabel';
 export { FormHelperText } from './FormHelperText';
 export { TextField } from './TextField';
 export { Navbar } from './Navbar';
+export { Collapse } from './Collapse';

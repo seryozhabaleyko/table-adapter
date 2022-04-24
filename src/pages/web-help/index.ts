@@ -1,1 +1,1 @@
-export { WebHelpDetails, WebHelpEdit, WebHelpCreate } from './entity';
+export { WebHelp, WebHelpEdit, WebHelpCreate } from './entity';

@@ -85,5 +85,7 @@ module.exports = {
         // This rule can enforce or disallow the use of braces around arrow function body.
         // https://eslint.org/docs/rules/arrow-body-style
         'arrow-body-style': 'off',
+
+        'no-param-reassign': 'off'
     },
 };
