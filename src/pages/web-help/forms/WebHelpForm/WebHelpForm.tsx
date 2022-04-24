@@ -3,8 +3,8 @@ import { Formik, Form, FormikHelpers } from 'formik';
 
 import {
     FormikTextField, FormikWysiwygField, FormikControls,
-} from '../../../../form';
-import { FormGroup } from '../../../../components';
+} from '@form';
+import { FormGroup } from '@components';
 
 import { WebHelpFormProps, ArticleVm } from './types';
 import { useViewModel } from './useViewModel';
