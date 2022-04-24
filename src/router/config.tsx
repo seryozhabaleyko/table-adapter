@@ -6,7 +6,7 @@ import {
     WebHelpEdit,
     WebHelpCreate,
     NotFound,
-} from '../pages';
+} from '@pages';
 
 import { RouteConfig } from './types';
 import { DefaultLayout } from './layouts';
